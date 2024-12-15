@@ -2,18 +2,20 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id("kotlin-kapt")
     alias(libs.plugins.hilt.android)
+    alias(libs.plugins.safe.args)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.parcelize)
 }
 
 android {
     namespace 'com.example.randomuserapp'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.example.randomuserapp"
-        minSdk 24
-        targetSdk 34
+        minSdk 25
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -30,6 +32,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.3'
+    }
+
     kotlinOptions {
         jvmTarget = '11'
     }
@@ -63,12 +70,16 @@ dependencies {
 
     // Dependency Injection
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
 
     // Image Loading
-    implementation(libs.coil.compose)
+    implementation(libs.glide)
+    ksp(libs.glide.compiler)
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+
+    // Reflect
+    implementation(libs.kotlin.reflect)
 }

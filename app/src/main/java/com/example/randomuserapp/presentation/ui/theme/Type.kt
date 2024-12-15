@@ -1,4 +1,4 @@
-package com.example.randomuserapp.ui.theme
+package com.example.randomuserapp.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
