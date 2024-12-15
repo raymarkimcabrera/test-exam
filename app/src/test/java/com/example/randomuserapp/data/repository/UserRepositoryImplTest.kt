@@ -1,16 +1,7 @@
 package com.example.randomuserapp.data.repository
 
 import com.example.randomuserapp.core.utils.Resource
-import com.example.randomuserapp.data.model.Coordinates
-import com.example.randomuserapp.data.model.Dob
-import com.example.randomuserapp.data.model.Location
-import com.example.randomuserapp.data.model.Login
-import com.example.randomuserapp.data.model.Name
-import com.example.randomuserapp.data.model.Picture
 import com.example.randomuserapp.data.model.RandomUserResponse
-import com.example.randomuserapp.data.model.Registered
-import com.example.randomuserapp.data.model.Street
-import com.example.randomuserapp.data.model.Timezone
 import com.example.randomuserapp.data.model.User
 import com.example.randomuserapp.data.remote.RemoteInterface
 import kotlinx.coroutines.test.runTest
@@ -24,7 +15,6 @@ import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import retrofit2.Response
-import java.util.UUID
 
 class UserRepositoryImplTest {
 
@@ -39,86 +29,14 @@ class UserRepositoryImplTest {
         userRepository = UserRepositoryImpl(mockRemoteInterface)
     }
 
-    private fun createMockUser(
-        gender: String = "male",
-        firstName: String = "John",
-        lastName: String = "Doe",
-        email: String = "john.doe@gmail.com",
-        phone: String = "09123456789",
-        cell: String = "09123546474",
-        nationality: String = "PH"
-    ): User {
-        return User(
 
-            gender = gender,
-
-            // Name
-            name = Name(
-                title = "Mr.",
-                first = firstName,
-                last = lastName
-            ),
-
-            // Location with comprehensive details
-            location = Location(
-                street = Street(
-                    number = 123,
-                    name = "San Jose Street"
-                ),
-                city = "Marilao",
-                state = "Bulacan",
-                country = "Philippines",
-                postcode = "12345",
-                coordinates = Coordinates(
-                    latitude = "12.123123123",
-                    longitude = "12.123123123"
-                ),
-                timezone = Timezone(
-                    offset = "-08:00",
-                    description = "Pacific Time"
-                )
-            ),
-
-            // Contact information
-            email = email,
-            phone = phone,
-            cell = cell,
-            nat = nationality,
-
-            // Login details
-            login = Login(
-                uuid = UUID.randomUUID().toString(),
-                username = "${firstName.lowercase()}.${lastName.lowercase()}",
-                password = "MockPassword123!"
-            ),
-
-            // Date of Birth
-            dob = Dob(
-                date = "1990-01-15T10:30:00Z",
-                age = 33
-            ),
-
-            // Registration details
-            registered = Registered(
-                date = "1990-01-15T10:30:00Z",
-                age = 3
-            ),
-
-            // Profile pictures
-            picture = Picture(
-                large = "https://randomuser.me/api/portraits/men/1.jpg",
-                medium = "https://randomuser.me/api/portraits/med/men/1.jpg",
-                thumbnail = "https://randomuser.me/api/portraits/thumb/men/1.jpg"
-            )
-        )
-    }
 
     @Test
     fun `getRandomUsers returns success when response is successful and users are not empty`() =
         runTest {
             val mockUsers = listOf(
-                createMockUser(),
-                createMockUser()
+                User.createMockUser(),
+                User.createMockUser()
             )
             val mockResponse = Response.success(RandomUserResponse(results = mockUsers))
 
