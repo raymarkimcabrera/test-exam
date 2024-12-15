@@ -19,6 +19,13 @@ class UserListViewModel @Inject constructor(
     private val _usersState = mutableStateOf<UserListState>(UserListState.Initial)
     val usersState: State<UserListState> = _usersState
 
+    private val _textFieldValue = mutableStateOf("")
+    val textFieldValue: State<String> = _textFieldValue
+
+    fun updateTextField(newValue: String) {
+        _textFieldValue.value = newValue
+    }
+
     fun getRandomUsers(count: Int = 50) {
         viewModelScope.launch {
             _usersState.value = UserListState.Loading

@@ -34,7 +34,7 @@ fun UserListScreen(
     viewModel: UserListViewModel = hiltViewModel(),
     onUserSelected: (User) -> Unit
 ) {
-    var userCountText by remember { mutableStateOf("0") }
+    val userCountText by viewModel.textFieldValue
 
     Column {
         Row(
@@ -44,7 +44,8 @@ fun UserListScreen(
             TextField(
                 value = userCountText,
                 onValueChange = { newValue ->
-                    userCountText = newValue.filter { it.isDigit() }
+                    val filteredValue = newValue.filter { it.isDigit() }
+                    viewModel.updateTextField(filteredValue)
                 },
                 label = { Text("Number of Users") },
                 modifier = Modifier.weight(1f),
