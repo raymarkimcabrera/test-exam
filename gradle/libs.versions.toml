@@ -17,7 +17,6 @@ mockitoCore = "4.11.0"
 mockitoInline = "4.11.0"
 navigationCompose = "2.8.5"
 retrofit = "2.9.0"
-safeArgs = "2.8.5"
 ksp = "2.1.0-1.0.29"
 
 [libraries]
@@ -52,7 +51,6 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
-safe-args = { id = "androidx.navigation.safeargs", version.ref = "safeArgs" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 
